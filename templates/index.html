@@ -87,6 +87,11 @@
           Y'all didn't pay us to refresh the page, so we're not going to refresh
           the page for you.
         </div>
+        <div style="flex-wrap: wrap;" class="flex">
+          {% for category in categories %}
+          <a href="/{{category}}" class="p-4 text-indigo-600 hover:text-indigo-900">{{category}}</a>
+          {% endfor %}
+        </div>
         <!-- Table Start-->
         <div class="flex flex-col">
           <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -107,24 +112,32 @@
                       <th scope="col" class="relative px-6 py-3">
                         <span class="sr-only">Edit</span>
                       </th>
+                      <th scope="col" class="relative px-6 py-3">
+                        <span class="sr-only">img</span>
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
+                    {% for value in category %}
                     <!-- Odd row -->
                     <tr class="bg-white">
                       <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                        John Doe
+                        {{value["name"]}}
                       </td>
                       <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                       Random Category
+                        {{value["category"]}}
                       </td>
                       <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        20 votes
+                        {{value["votes"]}} votes
                       </td>
                       <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                         <a href="javascript: alert('Hehe, we would not allow this fam')" class="text-indigo-600 hover:text-indigo-900">Add vote</a>
                       </td>
+                      <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                        <img src="{{value['img']}}" style="height: 100px; width: 100px; object-fit: contain;"/>
+                      </td>
                     </tr>
+                    {% endfor %}
                     <tr class="hidden bg-gray-50">
                       <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                         Nobody
